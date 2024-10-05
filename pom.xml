@@ -18,7 +18,6 @@
     <modules>
         <module>library</module>
         <module>application</module>
-        <module>code-coverage</module>
     </modules>
 
     <dependencyManagement>
