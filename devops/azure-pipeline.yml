@@ -22,7 +22,7 @@ jobs:
       - task: Maven@4
         inputs:
           mavenPomFile: 'pom.xml'
-          options: '-Dmaven.clean.skip=true'
+          options: '-Dmaven.clean.skip=true -DdummyParam1=dummyValue1 -DdummyParam2=dummyValue2'
           goals: 'verify'
           publishJUnitResults: false
           codeCoverageToolOption: 'JaCoCo'
