@@ -22,7 +22,7 @@ jobs:
       - task: Maven@4
         inputs:
           mavenPomFile: 'pom.xml'
-          options: '-Dclean.skip=true'
+          options: '-Dmaven.clean.skip=true'
           goals: 'verify'
           publishJUnitResults: false
           codeCoverageToolOption: 'JaCoCo'
