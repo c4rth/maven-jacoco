@@ -4,23 +4,27 @@ jobs:
   - job: Build
     pool:
       vmImage: 'ubuntu-latest'
-      steps:
-        - task: Maven@4
-          inputs:
-            mavenPomFile: 'pom.xml'
-            mavenOptions: '-Xmx3072m'
-            javaHomeOption: 'JDKVersion'
-            jdkVersionOption: '21'
-            jdkArchitectureOption: 'x64'
-            goals: 'clean verify'
-            publishJUnitResults: true
+    steps:
+      - task: Maven@4
+        inputs:
+          mavenPomFile: 'pom.xml'
+          goals: 'clean verify'
+          publishJUnitResults: true
+          testResultsFiles: '**/surefire-reports/TEST-*.xml'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.21'
+          mavenVersionOption: 'Default'
+          mavenOptions: '-Xmx3072m'
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
 
-        - task: PublishTestResults@2
-          inputs:
-            testResultsFormat: 'JUnit'
-            testResultsFiles: '**/target/surefire-reports/*.xml'
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: '**/target/surefire-reports/*.xml'
 
-        - task: PublishCodeCoverageResults@2
-          inputs:
-            summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
-            pathToSources: 'src/main/java/com/training/example/JacocoExample'
+      - task: PublishCodeCoverageResults@2
+        inputs:
+          summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
+          pathToSources: 'src/main/java/com/training/example/JacocoExample'
