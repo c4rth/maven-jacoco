@@ -5,26 +5,26 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     steps:
-      - task: Maven@4
-        inputs:
-          mavenPomFile: 'pom.xml'
-          goals: 'clean package'
-          publishJUnitResults: true
-          testResultsFiles: '**/surefire-reports/TEST-*.xml'
-          javaHomeOption: 'JDKVersion'
-          jdkVersionOption: '1.21'
-          mavenVersionOption: 'Default'
-          mavenOptions: '-Xmx3072m'
-          mavenAuthenticateFeed: false
-          effectivePomSkip: false
-          sonarQubeRunAnalysis: false
+      #- task: Maven@4
+      #  inputs:
+      #    mavenPomFile: 'pom.xml'
+      #    goals: 'clean package'
+      #    publishJUnitResults: true
+      #    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+      #    javaHomeOption: 'JDKVersion'
+      #    jdkVersionOption: '1.21'
+      #    mavenVersionOption: 'Default'
+      #    mavenOptions: '-Xmx3072m'
+      #    mavenAuthenticateFeed: false
+      #    effectivePomSkip: false
+      #    sonarQubeRunAnalysis: false
                 
       - task: Maven@4
         inputs:
           mavenPomFile: 'pom.xml'
           options: '-Dmaven.clean.skip=true -DdummyParam1=dummyValue1 -DdummyParam2=dummyValue2'
           goals: 'verify'
-          publishJUnitResults: false
+          publishJUnitResults: true
           codeCoverageToolOption: 'JaCoCo'
           javaHomeOption: 'JDKVersion'
           jdkVersionOption: '1.21'
