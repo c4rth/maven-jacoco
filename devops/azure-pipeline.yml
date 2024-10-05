@@ -8,7 +8,7 @@ jobs:
       - task: Maven@4
         inputs:
           mavenPomFile: 'pom.xml'
-          goals: 'clean verify'
+          goals: 'clean package'
           publishJUnitResults: true
           testResultsFiles: '**/surefire-reports/TEST-*.xml'
           javaHomeOption: 'JDKVersion'
@@ -18,8 +18,23 @@ jobs:
           mavenAuthenticateFeed: false
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
-
-      - task: PublishCodeCoverageResults@2
+                
+      - task: Maven@4
         inputs:
-          summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
-          pathToSources: 'src/main/java/com/training/example/JacocoExample'
+          mavenPomFile: 'pom.xml'
+          options: '-Dclean.skip=true'
+          goals: 'verify'
+          publishJUnitResults: false
+          codeCoverageToolOption: 'JaCoCo'
+          javaHomeOption: 'JDKVersion'
+          jdkVersionOption: '1.21'
+          mavenVersionOption: 'Default'
+          mavenOptions: '-Xmx3072m'
+          mavenAuthenticateFeed: false
+          effectivePomSkip: false
+          sonarQubeRunAnalysis: false
+
+      #- task: PublishCodeCoverageResults@2
+      #  inputs:
+      #    summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
+      #    pathToSources: 'src/main/java/com/training/example/JacocoExample'
