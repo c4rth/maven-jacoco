@@ -19,11 +19,6 @@ jobs:
           effectivePomSkip: false
           sonarQubeRunAnalysis: false
 
-      - task: PublishTestResults@2
-        inputs:
-          testResultsFormat: 'JUnit'
-          testResultsFiles: '**/target/surefire-reports/*.xml'
-
       - task: PublishCodeCoverageResults@2
         inputs:
           summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
