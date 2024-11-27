@@ -56,3 +56,16 @@ jobs:
             }
 
             Write-Host $param
+            Write-Host "##vso[task.setvariable variable=MY_PARAM]$param"
+            Write-Host "##vso[task.setvariable variable=MY_PARAM_OUTPUT;isOutput=true]$param"
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            Get-ChildItem Env:
+
+            $param = $(MY_PARAM)
+            $paramOutput = $(MY_PARAM_OUTPUT)
+
+            Write-Host $param
+            Write-Host $paramOutput
