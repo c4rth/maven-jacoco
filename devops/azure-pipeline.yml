@@ -72,11 +72,12 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
+            Get-ChildItem Env:
             $dirs = Get-ChildItem -Path "."
             
             foreach ($dir in $dirs) {
               Write-Host $dir.FullName
             }
 
-            $x = ${{ variables.myParam}}
+            $x = $Env:MY_PARAM
             Write-Host $x
