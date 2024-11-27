@@ -68,5 +68,5 @@ jobs:
             $param = $(MY_PARAM)
             $paramOutput = $(MY_PARAM_OUTPUT)
 
-            Write-Host $param
-            Write-Host $paramOutput
+            #Write-Host $param
+            #Write-Host $paramOutput
