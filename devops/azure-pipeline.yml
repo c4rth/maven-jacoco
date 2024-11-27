@@ -1,7 +1,7 @@
 trigger: none
 
 jobs:
-  - job: Build
+  - job: Build1
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -39,6 +39,7 @@ jobs:
       #    summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
       #    pathToSources: 'src/main/java/com/training/example/JacocoExample'
       - task: PowerShell@2
+        name: SetVar
         inputs:
           targetType: 'inline'
           script: |
@@ -57,12 +58,25 @@ jobs:
 
             Write-Host $param
             $paramJson = ConvertTo-Json $param -Compress
-            Write-Host "##vso[task.setvariable variable=MY_PARAM]$paramJson"
+            Write-Host "##vso[task.setvariable variable=MY_PARAM;isOutput=true]$paramJson"
+    
+  - job: Build2
+    dependsOn: Build1
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      - name: myParam
+        value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
+    steps:
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
-            Get-ChildItem Env:
-            Write-Host $(MY_PARAM) 
-            #$param = $(MY_PARAM)
-            #Write-Host $param
+            $dirs = Get-ChildItem -Path "."
+            
+            foreach ($dir in $dirs) {
+              Write-Host $dir.FullName
+            }
+
+            $x = ${{ variables.myParam}}
+            Write-Host $x
