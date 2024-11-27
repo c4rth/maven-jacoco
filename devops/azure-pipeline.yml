@@ -62,11 +62,7 @@ jobs:
         inputs:
           targetType: 'inline'
           script: |
-            param(
-              [Parameter(Mandatory=$true)]
-              [String]$MyParam
-            )
             Get-ChildItem Env:
+            Write-Host $(MY_PARAM) 
             #$param = $(MY_PARAM)
-            Write-Host $param
-          arguments: '-objectTypeCode $(MY_PARAM)'
+            #Write-Host $param
