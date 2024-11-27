@@ -65,7 +65,7 @@ jobs:
           script: |
             Get-ChildItem Env:
 
-            $param = $(MY_PARAM)
+            #$param = $(MY_PARAM)
             $paramOutput = $(MY_PARAM_OUTPUT)
 
             #Write-Host $param
