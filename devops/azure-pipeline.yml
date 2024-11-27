@@ -82,7 +82,7 @@ jobs:
             }
 
             $x = $Env:PASSED_PARAM
-            $files = Convert-FromJson $x
+            $files = ConvertFrom-Json $x
             foreach ($file in $files) {
               Write-Host $file.FullName $file.BaseName
             }
