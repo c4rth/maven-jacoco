@@ -44,5 +44,8 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             
-            $dir = Get-ChildItem -Path "."
-            Write-Host $dir
+            $dirs = Get-ChildItem -Path "."
+            
+            foreach ($dir in $dirs) {
+              Write-Host $dir.FullName
+            }
