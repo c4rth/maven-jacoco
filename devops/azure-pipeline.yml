@@ -56,8 +56,9 @@ jobs:
             }
 
             Write-Host $param
-            Write-Host "##vso[task.setvariable variable=MY_PARAM]$param"
-            Write-Host "##vso[task.setvariable variable=MY_PARAM_OUTPUT;isOutput=true]$param"
+            $paramJson = ConvertTo-Json $param
+            Write-Host "##vso[task.setvariable variable=MY_PARAM]$paramJson"
+            Write-Host "##vso[task.setvariable variable=MY_PARAM_OUTPUT;isOutput=true]$paramJson"
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
