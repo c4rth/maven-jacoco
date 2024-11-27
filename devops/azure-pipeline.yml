@@ -1,5 +1,14 @@
 trigger: none
 
+resources:
+  repositories:
+    - repository: repojacoco
+      type: github
+      ref: main
+      name: c4rth.maven-jacoco
+      endpoint: carthx
+
+
 jobs:
   - job: Build1
     pool:
@@ -39,6 +48,7 @@ jobs:
       #    summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
       #    pathToSources: 'src/main/java/com/training/example/JacocoExample'
       - checkout: self
+      - checkout: repojacoco
       - task: PowerShell@2
         name: SetVar
         inputs:
@@ -46,7 +56,7 @@ jobs:
           script: |
             # Write your PowerShell commands here.
             
-            $dirs = Get-ChildItem -Path "."
+            $dirs = Get-ChildItem -Path "." -Recurse
             $param = @()
             
             foreach ($dir in $dirs) {
@@ -70,17 +80,17 @@ jobs:
         value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
     steps:
       - checkout: self
+      - checkout: repojacoco
       - task: PowerShell@2
         inputs:
           targetType: 'inline'
           script: |
-            Get-ChildItem Env:
-            $dirs = Get-ChildItem -Path "."
-            
+            $dirs = Get-ChildItem -Path "." -Recurse
             foreach ($dir in $dirs) {
               Write-Host $dir.FullName
             }
 
+            Write-Host "*************"
             $x = $Env:PASSED_PARAM
             $files = ConvertFrom-Json $x
             foreach ($file in $files) {
