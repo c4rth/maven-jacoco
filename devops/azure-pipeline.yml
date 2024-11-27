@@ -19,22 +19,30 @@ jobs:
       #    effectivePomSkip: false
       #    sonarQubeRunAnalysis: false
                 
-      - task: Maven@4
-        inputs:
-          mavenPomFile: 'pom.xml'
-          options: '-Dmaven.clean.skip=true -DdummyParam1=dummyValue1 -DdummyParam2=dummyValue2'
-          goals: 'verify'
-          publishJUnitResults: true
-          codeCoverageToolOption: 'JaCoCo'
-          javaHomeOption: 'JDKVersion'
-          jdkVersionOption: '1.21'
-          mavenVersionOption: 'Default'
-          mavenOptions: '-Xmx3072m'
-          mavenAuthenticateFeed: false
-          effectivePomSkip: false
-          sonarQubeRunAnalysis: false
+#      - task: Maven@4
+#        inputs:
+#          mavenPomFile: 'pom.xml'
+#          options: '-Dmaven.clean.skip=true -DdummyParam1=dummyValue1 -DdummyParam2=dummyValue2'
+#          goals: 'verify'
+#          publishJUnitResults: true
+#          codeCoverageToolOption: 'JaCoCo'
+#          javaHomeOption: 'JDKVersion'
+#          jdkVersionOption: '1.21'
+#          mavenVersionOption: 'Default'
+#          mavenOptions: '-Xmx3072m'
+#          mavenAuthenticateFeed: false
+#          effectivePomSkip: false
+#          sonarQubeRunAnalysis: false
 
       #- task: PublishCodeCoverageResults@2
       #  inputs:
       #    summaryFileLocation: 'code-coverage/target/site/jacoco-aggregate/jacoco.xml'
       #    pathToSources: 'src/main/java/com/training/example/JacocoExample'
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            # Write your PowerShell commands here.
+            
+            $dir = Get-ChildItem -Path "."
+            Write-Host $dir
