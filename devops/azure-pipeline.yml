@@ -65,7 +65,7 @@ jobs:
     pool:
       vmImage: 'ubuntu-latest'
     variables:
-      - name: myParam
+      - name: PASSED_PARAM
         value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
     steps:
       - task: PowerShell@2
@@ -79,5 +79,5 @@ jobs:
               Write-Host $dir.FullName
             }
 
-            $x = $Env:MY_PARAM
+            $x = $Env:PASSED_PARAM
             Write-Host $x
