@@ -45,7 +45,14 @@ jobs:
             # Write your PowerShell commands here.
             
             $dirs = Get-ChildItem -Path "."
+            $param = @()
             
             foreach ($dir in $dirs) {
               Write-Host $dir.FullName
+              $param += @{
+                FullName=$dir.FullName
+                BaseName=$dir.BaseName
+              }    
             }
+
+            Write-Host $param
