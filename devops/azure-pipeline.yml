@@ -5,7 +5,7 @@ resources:
     - repository: repojacoco
       type: github
       ref: main
-      name: c4rth.maven-jacoco
+      name: c4rth/maven-jacoco
       endpoint: carthx
 
 
