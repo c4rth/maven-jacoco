@@ -132,7 +132,7 @@ jobs:
           targetPath: '$(Pipeline.Workspace)/spectral-report.html'
           artifact: 'Report'
       - script: |
-          echo "[View the detailed report](../artifacts/Report/spectral-report.html)" > summary.md
+          echo "[View the detailed report](../artifacts/Report/spectral-report.html)" > $(Pipeline.Workspace)/summary.md
         displayName: 'Generate Summary with Link'
       - script: |
           echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
