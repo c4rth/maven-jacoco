@@ -119,6 +119,9 @@ jobs:
           cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/reports/spectral-report.html
         displayName: 'Generate Spectral HTML Report'
       - script: |
+          cp ./maven-jacoco/devops/report2.html $(Pipeline.Workspace)/reports/spectral-report2.html
+        displayName: 'Generate Spectral HTML Report 2'
+      - script: |
           cp ./maven-jacoco/devops/report.md $(Pipeline.Workspace)/reports/spectral-report.md
         displayName: 'Generate Spectral Markdown Report'
       - script: |
@@ -128,20 +131,16 @@ jobs:
           cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/reports/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
        
-      - task: PublishBuildArtifacts@1
+      - task: PublishHtmlReport@1
+        displayName: 'Publish HTML Report'
         inputs:
-          pathToPublish: '$(Pipeline.Workspace)/reports/'
-          artifactName: 'drop'
-          publishLocation: 'Container'
+          reportDir: '$(Pipeline.Workspace)/reports/spectral-report.html'
+      - task: PublishHtmlReport@1
+        displayName: 'Publish HTML Report 2'
+        inputs:
+          reportDir: '$(Pipeline.Workspace)/reports/spectral-report2.html'
       
-      - publish: $(Build.Workspace)/reports/
-        artifact: BuildResults
-
-      - task: PublishPipelineArtifact@1
-        inputs:
-          targetPath: '$(Pipeline.Workspace)/spectral-report.html'
-          artifact: 'Report Published'
-          publishLocation: 'pipeline'
+      
           
 #      - task: PublishPipelineArtifact@1
 #        inputs:
