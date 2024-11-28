@@ -98,6 +98,7 @@ jobs:
       - bash: |
           pwd
           ls -al
+      - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
       - script: |
