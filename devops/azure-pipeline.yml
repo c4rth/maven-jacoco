@@ -136,8 +136,11 @@ jobs:
           echo "[View the detailed report 2](../artifacts/Report/spectral-report.html)" >> $(Pipeline.Workspace)/summary.md 
         displayName: 'Generate Summary with Link'
       - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report Link;]$(Pipeline.Workspace)/summary.md"
+        displayName: 'Attach Markdown Summary with Link 1'
+      - script: |
           echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
-        displayName: 'Attach Markdown Summary with Link'
+        displayName: 'Attach Markdown Summary with Link 2'
 #      - script: |
 #          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
 #        displayName: 'Attach HTML Report 1 to Summary'
