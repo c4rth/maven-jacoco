@@ -135,10 +135,12 @@ jobs:
         displayName: 'Publish HTML Report'
         inputs:
           reportDir: '$(Pipeline.Workspace)/reports/spectral-report.html'
+          tabName: 'Spectral report 1'
       - task: PublishHtmlReport@1
         displayName: 'Publish HTML Report 2'
         inputs:
           reportDir: '$(Pipeline.Workspace)/reports/spectral-report2.html'
+          tabName: 'Spectral report 2'
       
       
           
