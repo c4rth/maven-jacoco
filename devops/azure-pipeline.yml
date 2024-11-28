@@ -97,13 +97,16 @@ jobs:
               Write-Host $file.FullName $file.BaseName
             }
       - script: |
-          echo "Sample Report\nLine1\nLine2\nLine3" > $(Pipeline.Workspace)/report1.txt
+          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
+          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
+          echo "Line2" >> $(Pipeline.Workspace)/report1.txt
+          echo "Line3" >> $(Pipeline.Workspace)/report1.txt
         displayName: 'Generate Sample TXT Report 1'
       - script: |
-          echo "<h1>Sample Report</h1><ul><li>line 1</li><li>line 2</li><li>line 3</li></ul>" > $(Pipeline.Workspace)/report2.html
+          echo "<h1>Sample Report HTML</h1><ul><li>line 1</li><li>line 2</li><li>line 3</li></ul>" > $(Pipeline.Workspace)/report2.html
         displayName: 'Generate Sample HTML Report 2'
       - script: |
-          echo "# Sample Report" > $(Pipeline.Workspace)/summary.md
+          echo "# Sample Report Markdown" > $(Pipeline.Workspace)/summary.md
           echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
         displayName: 'Generate Markdown Report'
       - script: |
