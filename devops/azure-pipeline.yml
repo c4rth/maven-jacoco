@@ -103,8 +103,8 @@ jobs:
           echo "<h1>Sample Report</h1><ul><li>line 1</li><li>line 2</li><li>line 3</li></ul>" > $(Pipeline.Workspace)/report2.html
         displayName: 'Generate Sample HTML Report 2'
       - script: |
-          echo "# Sample Report" > summary.md
-          echo "This is the **summary** of the report." >> summary.md
+          echo "# Sample Report" > $(Pipeline.Workspace)/summary.md
+          echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
         displayName: 'Generate Markdown Report'
       - script: |
           echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
