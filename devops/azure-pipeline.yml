@@ -127,6 +127,16 @@ jobs:
           cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
 
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)/spectral-report.html'
+          artifact: 'Report'
+      - script: |
+          echo "[View the detailed report](../artifacts/Report/spectral-report.html)" > summary.md
+        displayName: 'Generate Summary with Link'
+      - script: |
+          echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
+        displayName: 'Attach Markdown Summary with Link'
 #      - script: |
 #          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
 #        displayName: 'Attach HTML Report 1 to Summary'
