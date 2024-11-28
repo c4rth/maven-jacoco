@@ -101,7 +101,6 @@ jobs:
       - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
-          mkdir $(Pipeline.Workspace)/reports
 #      - script: |
 #          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
 #          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
@@ -134,7 +133,7 @@ jobs:
           artifactName: 'drop'
           publishLocation: 'Container'
       
-      - publish: $(Build.SourcesDirectory)/reports/
+      - publish: $(Build.Workspace)/reports/
         artifact: BuildResults
 
       - task: PublishPipelineArtifact@1
