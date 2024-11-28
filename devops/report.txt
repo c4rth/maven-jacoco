@@ -1,0 +1,3 @@
+/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml:23:19 error oas3-server-variables "Server's "variables" object has unused defined "environment" url variable."
+/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml:35:19 error oas3-server-variables "Server's "variables" object has unused defined "environment" url variable."
+/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml:48:11 warning operation-tag-defined "Operation tags must be defined in global tags."
