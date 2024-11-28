@@ -101,7 +101,6 @@ jobs:
       - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
-          mkdir $(Pipeline.Workspace)/reports
 #      - script: |
 #          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
 #          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
@@ -116,64 +115,41 @@ jobs:
 #          echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
 #        displayName: 'Generate Markdown Report'
       - script: |
-          cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/reports/spectral-report.html
+          cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/spectral-report.html
         displayName: 'Generate Spectral HTML Report'
       - script: |
-          cp ./maven-jacoco/devops/report2.html $(Pipeline.Workspace)/reports/spectral-report2.html
+          cp ./maven-jacoco/devops/report2.html $(Pipeline.Workspace)/spectral-report2.html
         displayName: 'Generate Spectral HTML Report 2'
       - script: |
-          cp ./maven-jacoco/devops/report.md $(Pipeline.Workspace)/reports/spectral-report.md
+          cp ./maven-jacoco/devops/report.md $(Pipeline.Workspace)/spectral-report.md
         displayName: 'Generate Spectral Markdown Report'
       - script: |
-          cp ./maven-jacoco/devops/report.txt $(Pipeline.Workspace)/reports/spectral-report.txt
+          cp ./maven-jacoco/devops/report.txt $(Pipeline.Workspace)/spectral-report.txt
         displayName: 'Generate Spectral Text Report'
       - script: |
-          cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/reports/spectral-report.json
+          cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
        
       - task: PublishHtmlReport@1
         displayName: 'Publish HTML Report'
         inputs:
-          reportDir: '$(Pipeline.Workspace)/reports/spectral-report.html'
+          reportDir: '$(Pipeline.Workspace)/spectral-report.html'
           tabName: 'Spectral report 1'
       - task: PublishHtmlReport@1
         displayName: 'Publish HTML Report 2'
         inputs:
-          reportDir: '$(Pipeline.Workspace)/reports/spectral-report2.html'
+          reportDir: '$(Pipeline.Workspace)/spectral-report2.html'
           tabName: 'Spectral report 2'
           
-#      - task: PublishPipelineArtifact@1
-#        inputs:
-#          targetPath: '$(Pipeline.Workspace)/spectral-report.html'
-#          artifact: 'Report'
-#      - script: |
-#          echo "[View the detailed report](./artifacts/Report/spectral-report.html)" > $(Pipeline.Workspace)/summary.md
-#          echo "[View the detailed report 2](../artifacts/Report/spectral-report.html)" >> $(Pipeline.Workspace)/summary.md 
-#        displayName: 'Generate Summary with Link'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report Link;]$(Pipeline.Workspace)/summary.md"
-#        displayName: 'Attach Markdown Summary with Link 1'
-#      - script: |
-#          echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
-#        displayName: 'Attach Markdown Summary with Link 2'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
-#        displayName: 'Attach HTML Report 1 to Summary'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report 2;]$(Pipeline.Workspace)/report2.html"
-#        displayName: 'Attach HTML Report 2 to Summary'
-#     - script: |
-#          echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
-#        displayName: 'Attach Markdown Summary'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral HTML Report;]$(Pipeline.Workspace)/spectral-report.html"
-#        displayName: 'Attach Spectral HTML Report to Summary'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Text Report;]$(Pipeline.Workspace)/spectral-report.txt"
-#        displayName: 'Attach Spectral Text Report to Summary'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report;]$(Pipeline.Workspace)/spectral-report.md"
-#        displayName: 'Attach Spectral Markdown Report to Summary'
-#      - script: |
-#          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral JSON Report;]$(Pipeline.Workspace)/spectral-report.json"
-#        displayName: 'Attach Spectral JSON Report to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral HTML Report;]$(Pipeline.Workspace)/spectral-report.html"
+        displayName: 'Attach Spectral HTML Report to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Text Report;]$(Pipeline.Workspace)/spectral-report.txt"
+        displayName: 'Attach Spectral Text Report to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report;]$(Pipeline.Workspace)/spectral-report.md"
+        displayName: 'Attach Spectral Markdown Report to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral JSON Report;]$(Pipeline.Workspace)/spectral-report.json"
+        displayName: 'Attach Spectral JSON Report to Summary'
