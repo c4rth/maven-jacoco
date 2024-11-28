@@ -141,8 +141,6 @@ jobs:
         inputs:
           reportDir: '$(Pipeline.Workspace)/reports/spectral-report2.html'
           tabName: 'Spectral report 2'
-      
-      
           
 #      - task: PublishPipelineArtifact@1
 #        inputs:
