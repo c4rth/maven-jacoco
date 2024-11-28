@@ -115,7 +115,7 @@ jobs:
           echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
         displayName: 'Generate Markdown Report'
       - script: |
-          cp ./repojacoco/devops/report.html $(Pipeline.Workspace)/spectral-report.html
+          cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/spectral-report.html
         displayName: 'Generate Spectral Report'
 
       - script: |
