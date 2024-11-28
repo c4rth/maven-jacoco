@@ -1,0 +1,69 @@
+[
+	{
+		"code": "oas3-server-variables",
+		"path": [
+			"servers",
+			"0",
+			"variables",
+			"environment"
+		],
+		"message": "Server's \"variables\" object has unused defined \"environment\" url variable.",
+		"severity": 0,
+		"range": {
+			"start": {
+				"line": 22,
+				"character": 18
+			},
+			"end": {
+				"line": 29,
+				"character": 17
+			}
+		},
+		"source": "/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml"
+	},
+	{
+		"code": "oas3-server-variables",
+		"path": [
+			"servers",
+			"1",
+			"variables",
+			"environment"
+		],
+		"message": "Server's \"variables\" object has unused defined \"environment\" url variable.",
+		"severity": 0,
+		"range": {
+			"start": {
+				"line": 34,
+				"character": 18
+			},
+			"end": {
+				"line": 38,
+				"character": 17
+			}
+		},
+		"source": "/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml"
+	},
+	{
+		"code": "operation-tag-defined",
+		"path": [
+			"paths",
+			"/accounts",
+			"get",
+			"tags",
+			"0"
+		],
+		"message": "Operation tags must be defined in global tags.",
+		"severity": 1,
+		"range": {
+			"start": {
+				"line": 47,
+				"character": 10
+			},
+			"end": {
+				"line": 47,
+				"character": 18
+			}
+		},
+		"source": "/Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml"
+	}
+]
