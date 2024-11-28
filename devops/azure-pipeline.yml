@@ -126,7 +126,14 @@ jobs:
       - script: |
           cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
+       
 
+      - task: PublishPipelineArtifact@1
+        inputs:
+          targetPath: '$(Pipeline.Workspace)/spectral-report.html'
+          artifact: 'Report Published'
+          publishLocation: 'pipeline'
+          
       - task: PublishPipelineArtifact@1
         inputs:
           targetPath: '$(Pipeline.Workspace)/spectral-report.html'
