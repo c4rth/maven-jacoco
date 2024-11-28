@@ -97,9 +97,20 @@ jobs:
               Write-Host $file.FullName $file.BaseName
             }
       - script: |
-          echo "<html><body><h1>Sample Report</h1></body></html>" > $(Pipeline.Workspace)/report.html
-        displayName: 'Generate Sample HTML Report'
-
+          echo "<html><body><h1>Sample Report</h1></body></html>" > $(Pipeline.Workspace)/report1.html
+        displayName: 'Generate Sample HTML Report 1'
       - script: |
-          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report;]$(Pipeline.Workspace)/report.html"
-        displayName: 'Attach HTML Report to Summary'
+          echo "<html><body><h1>Sample Report</h1></body></html>" > $(Pipeline.Workspace)/report2.html
+        displayName: 'Generate Sample HTML Report 2'
+      - script: |
+          echo "<html><body><h1>Sample Report</h1></body></html>" > $(Pipeline.Workspace)/report3.html
+        displayName: 'Generate Sample HTML Report 3'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report 1;]$(Pipeline.Workspace)/report1.html"
+        displayName: 'Attach HTML Report 1 to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report 2;]$(Pipeline.Workspace)/report2.html"
+        displayName: 'Attach HTML Report 2 to Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report 3;]$(Pipeline.Workspace)/report3.html"
+        displayName: 'Attach HTML Report 3 to Summary'
