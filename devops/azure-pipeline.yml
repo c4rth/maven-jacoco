@@ -103,8 +103,9 @@ jobs:
           echo "<h1>Sample Report</h1><ul><li>line 1</li><li>line 2</li><li>line 3</li></ul>" > $(Pipeline.Workspace)/report2.html
         displayName: 'Generate Sample HTML Report 2'
       - script: |
-          echo "# h1 Heading 8-)\n## h2 Heading\n### h3 Heading\n#### h4 Heading\n##### h5 Heading\n###### h6 Heading" > $(Pipeline.Workspace)/report3.md
-        displayName: 'Generate Sample Markdown Report 3'
+          echo "# Sample Report" > summary.md
+          echo "This is the **summary** of the report." >> summary.md
+        displayName: 'Generate Markdown Report'
       - script: |
           echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
         displayName: 'Attach HTML Report 1 to Summary'
@@ -112,5 +113,5 @@ jobs:
           echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report 2;]$(Pipeline.Workspace)/report2.html"
         displayName: 'Attach HTML Report 2 to Summary'
       - script: |
-          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Markdown Report 3;]$(Pipeline.Workspace)/report3.md"
-        displayName: 'Attach HTML Report 3 to Summary'
+          echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
+        displayName: 'Attach Markdown Summary'
