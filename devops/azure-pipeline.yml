@@ -96,3 +96,10 @@ jobs:
             foreach ($file in $files) {
               Write-Host $file.FullName $file.BaseName
             }
+      - script: |
+          echo "<html><body><h1>Sample Report</h1></body></html>" > $(Pipeline.Workspace)/report.html
+        displayName: 'Generate Sample HTML Report'
+
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=HTML Report;]$(Pipeline.Workspace)/report.html"
+        displayName: 'Attach HTML Report to Summary'
