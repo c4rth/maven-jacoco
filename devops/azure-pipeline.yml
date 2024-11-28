@@ -101,6 +101,7 @@ jobs:
       - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
+          mkdir $(Pipeline.Workspace)/reports
 #      - script: |
 #          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
 #          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
@@ -115,18 +116,26 @@ jobs:
 #          echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
 #        displayName: 'Generate Markdown Report'
       - script: |
-          cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/spectral-report.html
+          cp ./maven-jacoco/devops/report.html $(Pipeline.Workspace)/reports/spectral-report.html
         displayName: 'Generate Spectral HTML Report'
       - script: |
-          cp ./maven-jacoco/devops/report.md $(Pipeline.Workspace)/spectral-report.md
+          cp ./maven-jacoco/devops/report.md $(Pipeline.Workspace)/reports/spectral-report.md
         displayName: 'Generate Spectral Markdown Report'
       - script: |
-          cp ./maven-jacoco/devops/report.txt $(Pipeline.Workspace)/spectral-report.txt
+          cp ./maven-jacoco/devops/report.txt $(Pipeline.Workspace)/reports/spectral-report.txt
         displayName: 'Generate Spectral Text Report'
       - script: |
-          cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/spectral-report.json
+          cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/reports/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
        
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathToPublish: '$(Pipeline.Workspace)/reports/'
+          artifactName: 'drop'
+          publishLocation: 'Container'
+      
+      - publish: $(Build.SourcesDirectory)/reports/
+        artifact: BuildResults
 
       - task: PublishPipelineArtifact@1
         inputs:
