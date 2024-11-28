@@ -81,21 +81,25 @@ jobs:
     steps:
       - checkout: self
       - checkout: repojacoco
-      - task: PowerShell@2
-        inputs:
-          targetType: 'inline'
-          script: |
-            $dirs = Get-ChildItem -Path "." -Recurse
-            foreach ($dir in $dirs) {
-              Write-Host $dir.FullName
-            }
-
-            Write-Host "*************"
-            $x = $Env:PASSED_PARAM
-            $files = ConvertFrom-Json $x
-            foreach ($file in $files) {
-              Write-Host $file.FullName $file.BaseName
-            }
+#      - task: PowerShell@2
+#        inputs:
+#          targetType: 'inline'
+#          script: |
+#            $dirs = Get-ChildItem -Path "." -Recurse
+#            foreach ($dir in $dirs) {
+#              Write-Host $dir.FullName
+#            }
+#            Write-Host "*************"
+#            $x = $Env:PASSED_PARAM
+#            $files = ConvertFrom-Json $x
+#            foreach ($file in $files) {
+#              Write-Host $file.FullName $file.BaseName
+#            }
+      - bash: |
+          pwd
+          ls -al
+          ls -al maven-jacoco
+          ls -al maven-jacoco/devops
       - script: |
           echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
           echo "Line1" >> $(Pipeline.Workspace)/report1.txt
@@ -110,6 +114,10 @@ jobs:
           echo "This is the **summary** of the report." >> $(Pipeline.Workspace)/summary.md
         displayName: 'Generate Markdown Report'
       - script: |
+          cp ./repojacoco/devops/report.html $(Pipeline.Workspace)/spectral-report.html
+        displayName: 'Generate Spectral Report'
+
+      - script: |
           echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=TXT Report 1;]$(Pipeline.Workspace)/report1.txt"
         displayName: 'Attach HTML Report 1 to Summary'
       - script: |
@@ -118,3 +126,6 @@ jobs:
       - script: |
           echo "##vso[task.uploadsummary]$(Pipeline.Workspace)/summary.md"
         displayName: 'Attach Markdown Summary'
+      - script: |
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Report 1;]$(Pipeline.Workspace)/spectral-report.html"
+        displayName: 'Attach Spectral HTML Report to Summary'
