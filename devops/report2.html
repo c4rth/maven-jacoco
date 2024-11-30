@@ -1,46 +1,69 @@
-<div id="overview" style="color: #b94a48; background: #f2dede; border-bottom: 1px solid #eed3d7">
-    <h1>Spectral Report 2</h1>
-    <div>
-        <span>3 problems (2 errors, 1 warning, 0 infos, 0 hints)</span> - Generated on Thu Nov 28 2024 08:09:30 GMT+0100 (Central European Standard Time)
-    </div>
+<div style="color: #b94a48; background: #f2dede; border-bottom: 1px solid #eed3d7;padding:5px 10px">
+    <h1>Spectral Report : ./spectral-error.json</h1>
+    <h3>7 problems (1 errors, 6 warning, 0 infos, 0 hints)</h3>
 </div>
-<table>
+<table style="margin:30px;width: 100%;border-radius:5px;border:1px solid #ddd">
     <tbody>
-    <tr class="bg-error" data-group="f-0">
-    <th colspan="4">
-        [+] /Users/carth/Development/github.c4rth/spring-playground/openapi-app/src/test/resources/calendar5-v1.0.0.yaml
-        <span>3 problems (2 errors, 1 warning, 0 infos, 0 hints)</span>
-    </th>
-</tr>
-<tr style="display:none" class="f-0">
-    <td>23:19</td>
-    <td class="severity clr-error">error</td>
-    <td>Server&#39;s &quot;variables&quot; object has unused defined &quot;environment&quot; url variable.</td>
-</tr>
-
-<tr style="display:none" class="f-0">
-    <td>35:19</td>
-    <td class="severity clr-error">error</td>
-    <td>Server&#39;s &quot;variables&quot; object has unused defined &quot;environment&quot; url variable.</td>
-</tr>
-
-<tr style="display:none" class="f-0">
-    <td>48:11</td>
-    <td class="severity clr-warning">warning</td>
-    <td>Operation tags must be defined in global tags.</td>
-</tr>
-
+        <tr style="text-align: left;">
+            <th style="padding:5px 10px; border-bottom:1px solid #ddd">Position</th>
+            <th style="padding:5px 10px; border-bottom:1px solid #ddd">Severity</th>
+            <th style="padding:5px 10px; border-bottom:1px solid #ddd">Message</th>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">1:1</td>
+            <td
+                style="color: #b94a48; background: #f2dede; border-bottom: 1px solid #eed3d7;font-weight:700;background: transparent">
+                error</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">'#/components/schemas/time' does not exist @
+                '/__w/401/s/depf-api-migration/domains/common-data-types-1.2.0.yaml'</td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">1:1</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">OpenAPI "servers" must be present and non-empty
+                array.</td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">15:9</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">x-bfunction must be present and non-empty string
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">17:11</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">Operation tags must be defined in global tags.
+            </td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">73:14</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">All components.schemas.properties must have an
+                example</td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">75:14</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">All components.schemas.properties must have an
+                example</td>
+        </tr>
+        <tr>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">77:12</td>
+            <td
+                style="color: #f0ad4e; background: #fcf8e3; border-bottom: 1px solid #fbeed5;font-weight:700;background: transparent">
+                warning</td>
+            <td style="padding:5px 10px; border-bottom:1px solid #ddd">All components.schemas.properties must have an
+                example</td>
+        </tr>
     </tbody>
 </table>
-<script type="text/javascript">
-    var groups = document.querySelectorAll("tr[data-group]");
-    for (var i = 0; i < groups.length; i++) {
-        groups[i].addEventListener("click", function() {
-            var inGroup = document.getElementsByClassName(this.getAttribute("data-group"));
-            this.innerHTML = (this.innerHTML.indexOf("+") > -1) ? this.innerHTML.replace("+", "-") : this.innerHTML.replace("-", "+");
-            for (var j = 0; j < inGroup.length; j++) {
-                inGroup[j].style.display = (inGroup[j].style.display !== "none") ? "none" : "table-row";
-            }
-        });
-    }
-</script>
