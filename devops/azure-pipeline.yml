@@ -11,6 +11,7 @@ resources:
 
 jobs:
   - job: Build1
+    condition: false
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -72,12 +73,12 @@ jobs:
             Write-Host "##vso[task.setvariable variable=MY_PARAM;isOutput=true]$paramJson"
     
   - job: Build2
-    dependsOn: Build1
+    #dependsOn: Build1
     pool:
       vmImage: 'ubuntu-latest'
-    variables:
-      - name: PASSED_PARAM
-        value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
+    #variables:
+    #  - name: PASSED_PARAM
+    #    value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
     steps:
       - checkout: self
       - checkout: repojacoco
@@ -130,26 +131,29 @@ jobs:
           cp ./maven-jacoco/devops/report.json $(Pipeline.Workspace)/spectral-report.json
         displayName: 'Generate Spectral JSON Report'
        
-      - task: PublishHtmlReport@1
-        displayName: 'Publish HTML Report'
-        inputs:
-          reportDir: '$(Pipeline.Workspace)/spectral-report.html'
-          tabName: 'Spectral report 1'
-      - task: PublishHtmlReport@1
-        displayName: 'Publish HTML Report 2'
-        inputs:
-          reportDir: '$(Pipeline.Workspace)/spectral-report2.html'
-          tabName: 'Spectral report 2'
+      #- task: PublishHtmlReport@1
+      #  displayName: 'Publish HTML Report'
+      #  inputs:
+      #    reportDir: '$(Pipeline.Workspace)/spectral-report.html'
+      #    tabName: 'Spectral report 1'
+      #- task: PublishHtmlReport@1
+      #  displayName: 'Publish HTML Report 2'
+      #  inputs:
+      #    reportDir: '$(Pipeline.Workspace)/spectral-report2.html'
+      #    tabName: 'Spectral report 2'
           
       - script: |
           echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral HTML Report;]$(Pipeline.Workspace)/spectral-report.html"
         displayName: 'Attach Spectral HTML Report to Summary'
       - script: |
-          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Text Report;]$(Pipeline.Workspace)/spectral-report.txt"
-        displayName: 'Attach Spectral Text Report to Summary'
-      - script: |
-          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report;]$(Pipeline.Workspace)/spectral-report.md"
-        displayName: 'Attach Spectral Markdown Report to Summary'
-      - script: |
-          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral JSON Report;]$(Pipeline.Workspace)/spectral-report.json"
-        displayName: 'Attach Spectral JSON Report to Summary'
+          echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral HTML Report 2;]$(Pipeline.Workspace)/spectral-report2.html"
+        displayName: 'Attach Spectral HTML Report 2 to Summary'
+      #- script: |
+      #    echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Text Report;]$(Pipeline.Workspace)/spectral-report.txt"
+      #  displayName: 'Attach Spectral Text Report to Summary'
+      #- script: |
+      #    echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral Markdown Report;]$(Pipeline.Workspace)/spectral-report.md"
+      #  displayName: 'Attach Spectral Markdown Report to Summary'
+      #- script: |
+      #    echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral JSON Report;]$(Pipeline.Workspace)/spectral-report.json"
+      #  displayName: 'Attach Spectral JSON Report to Summary'
