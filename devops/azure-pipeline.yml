@@ -173,3 +173,24 @@ jobs:
       #- script: |
       #    echo "##vso[task.addattachment type=Distributedtask.Core.Summary;name=Spectral JSON Report;]$(Pipeline.Workspace)/spectral-report.json"
       #  displayName: 'Attach Spectral JSON Report to Summary'
+
+  - job: Build3
+    dependsOn: [Build1, Build2]
+    pool:
+      vmImage: 'ubuntu-latest'
+    variables:
+      - name: PASSED_PARAM
+        value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
+      - name: FROM_JAVA_OUPTUT
+        value: $[ dependencies.Build2.outputs['SetVar.FROM_JAVA_OUPTUT'] ]
+      - name: FROM_JAVA
+        value: $[ dependencies.Build2.outputs['SetVar.FROM_JAVA'] ]
+    steps:
+      - checkout: self
+      - checkout: repojacoco
+      - task: PowerShell@2
+        name: ListEnv
+        inputs:
+          targetType: 'inline'
+          script: |
+            Get-ChildItem Env:
