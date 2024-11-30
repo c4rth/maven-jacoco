@@ -72,7 +72,7 @@ jobs:
             Write-Host "##vso[task.setvariable variable=MY_PARAM;isOutput=true]$paramJson"
     
   - job: Build2
-    #dependsOn: Build1
+    dependsOn: Build1
     pool:
       vmImage: 'ubuntu-latest'
     variables:
