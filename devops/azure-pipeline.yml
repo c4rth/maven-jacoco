@@ -114,6 +114,7 @@ jobs:
           java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
       - bash: |
           java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar check
+        name: JavaSetVar
       - bash: |
           java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
       - bash: |
@@ -182,9 +183,9 @@ jobs:
       - name: PASSED_PARAM
         value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
       - name: FROM_JAVA_OUPTUT
-        value: $[ dependencies.Build2.outputs['SetVar.FROM_JAVA_OUPTUT'] ]
+        value: $[ dependencies.Build2.outputs['JavaSetVar.FROM_JAVA_OUPTUT'] ]
       - name: FROM_JAVA
-        value: $[ dependencies.Build2.outputs['SetVar.FROM_JAVA'] ]
+        value: $[ dependencies.Build2.outputs['JavaSetVar.FROM_JAVA'] ]
     steps:
       - checkout: self
       - checkout: repojacoco
