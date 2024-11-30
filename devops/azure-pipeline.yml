@@ -101,6 +101,15 @@ jobs:
       - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
+      - task: JavaToolInstaller@0
+        inputs:
+          versionSpec: '21'
+          jdkArchitectureOption: 'x64'
+          jdkSourceOption: 'PreInstalled'
+      - script: |
+          java -version
+          echo "JVM: $(java -version)"
+        displayName: 'Check Java Version'
       - bash: |
           java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
 #      - script: |
