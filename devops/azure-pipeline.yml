@@ -112,6 +112,12 @@ jobs:
         displayName: 'Check Java Version'
       - bash: |
           java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
+      - bash: |
+          java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar check
+      - bash: |
+          java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
+      - bash: |
+          java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar lint
 #      - script: |
 #          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
 #          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
