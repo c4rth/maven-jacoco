@@ -75,9 +75,9 @@ jobs:
     #dependsOn: Build1
     pool:
       vmImage: 'ubuntu-latest'
-    #variables:
-    #  - name: PASSED_PARAM
-    #    value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
+    variables:
+      - name: PASSED_PARAM
+        value: $[ dependencies.Build1.outputs['SetVar.MY_PARAM'] ]
     steps:
       - checkout: self
       - checkout: repojacoco
