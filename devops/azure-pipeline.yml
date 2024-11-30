@@ -11,7 +11,6 @@ resources:
 
 jobs:
   - job: Build1
-    condition: false
     pool:
       vmImage: 'ubuntu-latest'
     steps:
@@ -102,6 +101,8 @@ jobs:
       - bash: |
           ls -al maven-jacoco
           ls -al maven-jacoco/devops
+      - bash: |
+          java -jar maven-jacoco/devops/api-platform-1.0-SNAPSHOT.jar env
 #      - script: |
 #          echo "Sample Report TXT" > $(Pipeline.Workspace)/report1.txt
 #          echo "Line1" >> $(Pipeline.Workspace)/report1.txt
